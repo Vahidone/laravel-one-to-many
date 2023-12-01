@@ -64,6 +64,7 @@
                   class="form-control @error('image') is-invalid @enderror"
                   name="image"
                   type="file"
+                  onchange="showImage(event)"
                   value="{{ old('image', $project?->image) }}"
                 >
                 @error('image')
@@ -72,6 +73,8 @@
                 @if ($project)
                 <img width="150" src="{{ asset('storage/' . $project->image) }}"  />
                 @endif
+
+                <img id="thumb" width="150" class="mt-4" src="/img/placeholder.png">
 
             </div>
 
@@ -96,6 +99,16 @@
 
 
 </div>
+
+<script>
+
+    //  funzione per visualizzare l'immagine inserita nella form nel quadro
+
+    function showImage(event) {
+        const thumb = document.getElementById('thumb');
+        thumb.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
 
 
 

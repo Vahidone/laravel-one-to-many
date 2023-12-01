@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Type;
+use Illuminate\Support\Str;
 use App\Functions\Helper;
 
 class TypeController extends Controller
@@ -38,7 +39,19 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist = Type::where('title', $request->title)->first();
+        if($exist) {
+            return redirect()->route('admin.types.index')->with('error', 'Il nome della type esiste già');
+        }else {
+            $new_type = new Type();
+            $new_type->title = $request->title;
+            $new_type->slug = Helper::generateSlug($request->title, Type::class);
+            $new_type->save();
+
+            return redirect()->route('admin.types.index')->with('success', 'Il nome della type è stato salvato con successo');
+
+        }
+
     }
 
     /**

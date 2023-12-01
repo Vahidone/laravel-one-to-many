@@ -37,6 +37,19 @@
 
         @endif
 
+
+
+        <form action="{{ route('admin.types.store')}}" method="POST" class="mb-5">
+            @csrf
+
+            <div class="input-group mb-3 mt-4">
+                <input type="text" class="form-control" placeholder="New type" name="title">
+                <button class="btn btn-primary" type="submit" id="button-addon2">Add</button>
+            </div>
+        </form>
+
+
+
     <table class="table table-dark">
         <thead>
             <tr>

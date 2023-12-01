@@ -70,11 +70,9 @@
                 @error('image')
                     <p class="text-danger">{{ $image }}</p>
                 @enderror
-                @if ($project)
-                <img width="150" src="{{ asset('storage/' . $project->image) }}"  />
-                @endif
 
-                <img id="thumb" width="150" class="mt-4" src="/img/placeholder.png">
+
+                <img id="thumb" width="150" class="mt-4" onerror="this.src='/img/placeholder.png'" src="{{ asset('storage/' . $project?->image) }}"/>
 
             </div>
 
@@ -101,8 +99,6 @@
 </div>
 
 <script>
-
-    //  funzione per visualizzare l'immagine inserita nella form nel quadro.
 
     function showImage(event) {
         const thumb = document.getElementById('thumb');

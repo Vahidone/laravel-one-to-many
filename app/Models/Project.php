@@ -10,6 +10,12 @@ class Project extends Model
 {
     use HasFactory;
 
+    // relazione con la tabella types
+    // la funzione deve essere al singolare
+    public function type() {
+        return $this->belongsTo(Type::class);
+    }
+
     protected $fillable = [
         'title',
         'slug',

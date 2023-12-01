@@ -102,7 +102,7 @@
 
 <script>
 
-    //  funzione per visualizzare l'immagine inserita nella form nel quadro
+    //  funzione per visualizzare l'immagine inserita nella form nel quadro.
 
     function showImage(event) {
         const thumb = document.getElementById('thumb');

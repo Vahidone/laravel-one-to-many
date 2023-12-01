@@ -3,13 +3,44 @@
 
 @section('content')
 
+@include('admin.partials.functions')
+
 <main class="main-csm w-100">
     <h1 class="text-center text-white fw-bold mb-5">Types</h1>
 
-    <table class="table table-dark table-striped text-center">
+        @if ($errors->any())
+
+
+            <div class="alert alert-warning" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+        @endif
+
+
+        @if (session('error'))
+            <div id="alert-message"  class="alert alert-warning" role="alert">
+                {{ session('error') }}
+            </div>
+
+        @endif
+
+        @if (session('success'))
+
+            <div id="alert-message"  class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+
+        @endif
+
+    <table class="table table-dark">
         <thead>
             <tr>
-                <th class="fs-5 fw-bold">ID</th>
+
                 <th class="fs-5 fw-bold">Title</th>
                 <th class="fs-5 fw-bold">Action</th>
             </tr>
@@ -17,9 +48,30 @@
         <tbody>
             @foreach ($types as $type)
             <tr>
-                <td>{{ $type->id }}</td>
-                <td>{{ $type->title }}</td>
-                <td>xxx</td>
+
+                <td>
+                    <form action="{{ route('admin.types.update', $type)}}" method="POST" id="forma-edit-{{ $type->id}}">
+                        @csrf
+                        @method('PUT')
+
+
+                        <input type="text" class="form-hidden bg-dark text-white" value="{{ $type->title}}" name="title">
+
+                    </form>
+                </td>
+
+
+                <td>
+
+                    <button onclick="submitForm({{ $type->id}})" class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+
+                   @include('admin.partials.form-delete', [
+                    'route' => route('admin.types.destroy', $type),
+                    'message' => 'sei sicuro di voler eliminare questa type?'
+                   ])
+
+
+                </td>
 
 
             </tr>
@@ -32,6 +84,15 @@
 
 
 </main>
+
+<script>
+
+    function submitForm(id) {
+        const form = document.getElementById('forma-edit-' + id);
+        form.submit();
+
+    }
+</script>
 
 
 @endsection

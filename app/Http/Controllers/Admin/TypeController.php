@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Type;
+use App\Functions\Helper;
 
 class TypeController extends Controller
 {
@@ -69,9 +70,26 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Type $type)
     {
-        //
+        $val_data = $request->validate([
+            'title' => 'required|min:2|max:20',
+        ], [
+            'title.required' => 'Il nome della type è obbligatorio',
+            'title.min' => 'Il nome della type deve essere maggiore di 2 caratteri',
+            'title.max' => 'Il nome della type deve essere minore di 20 caratteri'
+        ]);
+
+        $exist = Type::where('title', $request->title)->first();
+        if($exist) {
+            return redirect()->route('admin.types.index')->with('error', 'Il nome della type esiste già');
+        }
+
+        $val_data['slug'] = Helper::generateSlug($request->title, Type::class);
+
+        $type->update($val_data);
+
+        return redirect()->route('admin.types.index')->with('success', 'Il nome della type è stato modificato con successo');
     }
 
     /**
@@ -80,8 +98,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('success', 'La type è stata eliminata con successo');
     }
 }

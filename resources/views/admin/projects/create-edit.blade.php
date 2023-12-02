@@ -43,6 +43,22 @@
                 @error('title')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
+
+
+                <div class="mb-3">
+
+                    <label for="type_id" class="form-label text-white">Type</label>
+
+                    <select name="type_id" class="form-select" id="type_id" >
+                        <option value="">Select Type</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}" @if ($type->id === old('type_id', $project?->type?->id)) selected @endif>
+                                {{ $type->title }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                </div>
             </div>
             <div class="mb-3">
                 <label for="release_date" class="form-label text-white">Data</label>

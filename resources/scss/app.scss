@@ -1,7 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
-    font-family: 'Roboto Slab', serif;;
+    font-family: 'Roboto Slab', serif;
+    background-image: url('/public/img/main_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -58,7 +61,6 @@ aside {
 .main-csm {
     width: 100%;
     padding: 100px;
-    background-color: rgb(1, 1, 49);
 
 }
 
@@ -71,5 +73,6 @@ aside {
         outline: none;
     }
 }
+
 
 

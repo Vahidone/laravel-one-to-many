@@ -11,6 +11,7 @@
 
             <li><a href="{{ route('admin.technologies.index')}}"><i class="fa-solid fa-laptop-code me-2"></i>   Technologies</a></li>
             <li><a href="{{ route('admin.types.index')}}"><i class="fa-solid fa-layer-group me-2"></i> Types</a></li>
+            <li><a href="{{ route('admin.type-projects')}}"><i class="fa-solid fa-layer-group me-2"></i> Projects for type</a></li>
         </ul>
     </nav>
 </aside>

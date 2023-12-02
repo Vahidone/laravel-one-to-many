@@ -25,7 +25,7 @@
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->description }}</td>
                     <td>{{ $project->release_date }}</td>
-                    <td>{{ $project->type->title }}</td>
+                    <td>{{ $project->type?->title ?? '-' }}</td>
                     <td class="d-flex">
                         <a class="btn btn-success" href="{{ route('admin.projects.show', $project)}}"><i class="fa-solid fa-eye"></i></a>
                         <a class="btn btn-warning ms-2" href="{{ route('admin.projects.edit', $project)}}"><i class="fa-solid fa-pen-to-square"></i></a>

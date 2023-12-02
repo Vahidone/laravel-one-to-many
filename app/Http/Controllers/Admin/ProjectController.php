@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Type;
 use App\Functions\Helper;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProjectRequest;
@@ -24,6 +25,8 @@ class ProjectController extends Controller
 
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +38,8 @@ class ProjectController extends Controller
         $method = 'POST';
         $route = route('admin.projects.store');
         $project = null;
-        return view('admin.projects.create-edit', compact('title','method', 'route', 'project'));
+        $types = Type::all();
+        return view('admin.projects.create-edit', compact('title','method', 'route', 'project', 'types'));
     }
 
     /**
@@ -89,7 +93,8 @@ class ProjectController extends Controller
         $title = 'Modifica progetto';
         $method = 'PUT';
         $route = route('admin.projects.update', $project);
-        return view('admin.projects.create-edit', compact('title','method', 'route', 'project'));
+        $types = Type::all();
+        return view('admin.projects.create-edit', compact('title','method', 'route', 'project', 'types'));
 
     }
 

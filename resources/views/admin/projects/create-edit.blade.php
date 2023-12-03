@@ -2,27 +2,30 @@
 
 @section('content')
 
+@include('admin.partials.functions')
+
+
 <div class="main-csm">
 
 
     <h1 class="text-white mb-4">{{ $title }}</h1>
 
 
-@if($errors->any())
-<div class="alert alert-danger" role="alert">
-    <ul>
+    @if($errors->any())
+        <div class="alert-message alert alert-danger " role="alert">
+            <ul>
 
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
 
-</div>
-@endif
+        </div>
+    @endif
 
 
 
-<div class="row">
+    <div class="row">
     <div class="col-8">
         <form
           action="{{ $route }}"
@@ -41,7 +44,9 @@
                   value="{{ old('title', $project?->title) }}"
                 >
                 @error('title')
-                    <p class="text-danger">{{ $message }}</p>
+
+                    <p class="alert-message text-danger" >{{ $message }}</p>
+
                 @enderror
 
 
@@ -70,7 +75,7 @@
                   value="{{ old('release_date', $project?->release_date) }}"
                 >
                 @error('release_date')
-                    <p class="text-danger">{{ $message }}</p>
+                    <p id="alert-message-p" class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3">
@@ -92,14 +97,13 @@
 
             </div>
 
-
-            <div class="form-floating my-5">
-                <label for="Descrizione">Descrizione</label>
+            <label for="Descrizione" class="text-white mb-2">Descrizione *</label>
+            <div class="form-floating mb-5">
 
                 <textarea class="form-control" placeholder="Descrizione" id="Descrizione" name="description" style="height: 200px">{{ old('description',$project?->description)  }}</textarea>
 
                 @error('description')
-                    <p class="text-danger">{{ $message }}</p>
+                    <p class="alert-message text-danger">{{ $message }}</p>
                 @enderror
             </div>
 

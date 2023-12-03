@@ -29,7 +29,7 @@ class ProjectRequest extends FormRequest
 
     public function messages(){
         return [
-            'title.required' => 'Devi inserire il titolo del progetto',
+            'title.required' => 'Il titolo del progetto è obbligatorio',
             'title.min' => 'Il titolo del progetto deve avere almeno :min caratteri',
             'title.max' => 'Il titolo del progetto non può avere più di :max caratteri',
             'description.required' => 'La descrizione del progetto non può essere vuoto',

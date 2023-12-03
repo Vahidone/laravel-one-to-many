@@ -24,7 +24,7 @@
 
 
         @if (session('error'))
-            <div id="alert-message"  class="alert alert-warning" role="alert">
+            <div  class="alert-message alert alert-warning" role="alert">
                 {{ session('error') }}
             </div>
 
@@ -32,7 +32,7 @@
 
         @if (session('success'))
 
-            <div id="alert-message"  class="alert alert-success" role="alert">
+            <div class="alert-message alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
 

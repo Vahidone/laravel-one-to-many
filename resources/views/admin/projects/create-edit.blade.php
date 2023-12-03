@@ -78,6 +78,8 @@
                     <p id="alert-message-p" class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
+
+
             <div class="mb-3">
                 <label for="image" class="form-label text-white">Immagine</label>
                 <input

@@ -6,51 +6,52 @@
 @include('admin.partials.functions')
 
 <main class="main-csm w-100">
-    <h1 class="text-center text-white fw-bold mb-5">Types</h1>
 
-        @if ($errors->any())
+    <h1 class="text-white fw-bold mb-5">Types</h1>
 
-
-            <div class="alert alert-warning" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-
-        @endif
+    @if ($errors->any())
 
 
-        @if (session('error'))
-            <div id="alert-message"  class="alert alert-warning" role="alert">
-                {{ session('error') }}
-            </div>
+        <div class="alert alert-warning" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
 
-        @endif
-
-        @if (session('success'))
-
-            <div id="alert-message"  class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
-
-        @endif
+    @endif
 
 
+    @if (session('error'))
+        <div id="alert-message"  class="alert alert-warning" role="alert">
+            {{ session('error') }}
+        </div>
 
-        <form action="{{ route('admin.types.store')}}" method="POST" class="mb-5">
-            @csrf
+    @endif
 
-            <div class="input-group mb-3 mt-4">
-                <input type="text" class="form-control" placeholder="New type" name="title">
-                <button class="btn btn-primary" type="submit" id="button-addon2">Add</button>
-            </div>
-        </form>
+    @if (session('success'))
+
+        <div id="alert-message"  class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+
+    @endif
 
 
 
-    <table class="table table-dark">
+    <form action="{{ route('admin.types.store')}}" method="POST" class="mb-5">
+        @csrf
+
+        <div class="input-group mb-3 mt-4">
+            <input type="text" class="form-control" placeholder="New type" name="title">
+            <button class="btn btn-primary" type="submit" id="button-addon2">Add</button>
+        </div>
+    </form>
+
+
+
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
 
@@ -68,7 +69,7 @@
                         @method('PUT')
 
 
-                        <input type="text" class="form-hidden bg-dark text-white" value="{{ $type->title}}" name="title">
+                        <input type="text" class="form-hidden bg-transparent text-white" value="{{ $type->title}}" name="title">
 
                     </form>
                 </td>
@@ -92,6 +93,7 @@
 
 
         </tbody>
+
     </table>
 
 

@@ -76,3 +76,17 @@ aside {
 
 
 
+// link in Projects & Types List
+
+.link-type-projects {
+
+    color: rgb(162, 196, 162);
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+        color: rgb(207, 204, 204);
+        text-underline-offset: 7px;
+    }
+}
+
+
